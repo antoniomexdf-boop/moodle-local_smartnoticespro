@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/smartnoticespro/db" VERSION="2026030711" COMMENT="XMLDB file for local_smartnoticespro"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="local_smartnoticespro" COMMENT="Stores Smart Notices records">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT=""/>
+        <FIELD NAME="message" TYPE="text" NOTNULL="true"/>
+        <FIELD NAME="hidetitle" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0"/>
+        <FIELD NAME="confirmenabled" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1"/>
+        <FIELD NAME="active" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1"/>
+        <FIELD NAME="scope" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="global"/>
+        <FIELD NAME="targetroles" TYPE="char" LENGTH="30" NOTNULL="true" DEFAULT="all"/>
+        <FIELD NAME="locations" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT=""/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="false"/>
+        <FIELD NAME="groupid" TYPE="int" LENGTH="10" NOTNULL="false"/>
+        <FIELD NAME="timestart" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+        <FIELD NAME="timeend" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="false"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+        <FIELD NAME="impressions" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+        <FIELD NAME="closes" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+        <FIELD NAME="confirmations" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="courseid_fk" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+        <KEY NAME="groupid_fk" TYPE="foreign" FIELDS="groupid" REFTABLE="groups" REFFIELDS="id"/>
+        <KEY NAME="userid_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="active_idx" UNIQUE="false" FIELDS="active"/>
+        <INDEX NAME="scope_idx" UNIQUE="false" FIELDS="scope"/>
+        <INDEX NAME="courseid_idx" UNIQUE="false" FIELDS="courseid"/>
+        <INDEX NAME="groupid_idx" UNIQUE="false" FIELDS="groupid"/>
+        <INDEX NAME="timestart_idx" UNIQUE="false" FIELDS="timestart"/>
+        <INDEX NAME="timeend_idx" UNIQUE="false" FIELDS="timeend"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="local_smartnoticespro_log" COMMENT="Stores Smart Notices interaction logs">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="noticeid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+        <FIELD NAME="action" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT=""/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="false"/>
+        <FIELD NAME="pageurl" TYPE="char" LENGTH="255" NOTNULL="false"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="noticeid_fk" TYPE="foreign" FIELDS="noticeid" REFTABLE="local_smartnoticespro" REFFIELDS="id"/>
+        <KEY NAME="userid_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+        <KEY NAME="courseid_fk" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="action_idx" UNIQUE="false" FIELDS="action"/>
+        <INDEX NAME="timecreated_idx" UNIQUE="false" FIELDS="timecreated"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

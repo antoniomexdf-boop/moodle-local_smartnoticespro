@@ -1,0 +1,15 @@
+<div id="{{modalid}}" class="smartnotices-modal" role="dialog" aria-modal="true" aria-label="{{dialoglabel}}" aria-hidden="true" tabindex="-1" data-noticeid="{{noticeid}}" data-courseid="{{courseid}}" data-sesskey="{{sesskey}}">
+    <div class="smartnotices-modal__backdrop" data-action="close"></div>
+    <div class="smartnotices-modal__card" role="document">
+        <button type="button" class="smartnotices-modal__close" data-action="close" aria-label="{{closelabel}}">&times;</button>
+        {{#showtitle}}
+        <h2 class="smartnotices-modal__title">{{title}}</h2>
+        {{/showtitle}}
+        <div class="smartnotices-modal__content">{{{message}}}</div>
+        {{#showconfirm}}
+        <div class="smartnotices-modal__footer">
+            <button type="button" class="btn btn-primary smartnotices-modal__confirm" data-action="confirm">{{confirmlabel}}</button>
+        </div>
+        {{/showconfirm}}
+    </div>
+</div>
