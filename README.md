@@ -42,7 +42,7 @@ Screenshot source integrated from:
 
 - `screenshots_smartnotices` (workspace source)
 
-## Features (Free MVP)
+## Features
 
 - CRUD for notices.
 - Global notices managed by administrators.
