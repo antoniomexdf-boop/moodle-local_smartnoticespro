@@ -19,6 +19,9 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Upgrade steps for local_smartnoticespro.
  *
+ * @package   local_smartnoticespro
+ * @copyright 2026 Jesus Antonio Jimenez Aviña <antoniomexdf@gmail.com> <antoniojamx@gmail.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @param int $oldversion
  * @return bool
  */
@@ -35,7 +38,7 @@ function xmldb_local_smartnoticespro_upgrade(int $oldversion): bool {
             $dbman->add_field($table, $field);
         }
 
-        upgrade_plugin_savepoint(true, 2026030603, 'local', 'smartnotices');
+        upgrade_plugin_savepoint(true, 2026030603, 'local', 'smartnoticespro');
     }
 
     if ($oldversion < 2026030703) {
@@ -56,7 +59,7 @@ function xmldb_local_smartnoticespro_upgrade(int $oldversion): bool {
             $dbman->add_field($table, $confirmations);
         }
 
-        upgrade_plugin_savepoint(true, 2026030703, 'local', 'smartnotices');
+        upgrade_plugin_savepoint(true, 2026030703, 'local', 'smartnoticespro');
     }
 
     if ($oldversion < 2026030704) {
@@ -96,7 +99,7 @@ function xmldb_local_smartnoticespro_upgrade(int $oldversion): bool {
             $dbman->create_table($logtable);
         }
 
-        upgrade_plugin_savepoint(true, 2026030704, 'local', 'smartnotices');
+        upgrade_plugin_savepoint(true, 2026030704, 'local', 'smartnoticespro');
     }
 
     if ($oldversion < 2026030707) {
@@ -115,7 +118,7 @@ function xmldb_local_smartnoticespro_upgrade(int $oldversion): bool {
             $dbman->add_field($table, $autonextactivity);
         }
 
-        upgrade_plugin_savepoint(true, 2026030707, 'local', 'smartnotices');
+        upgrade_plugin_savepoint(true, 2026030707, 'local', 'smartnoticespro');
     }
 
     if ($oldversion < 2026030710) {
@@ -125,7 +128,7 @@ function xmldb_local_smartnoticespro_upgrade(int $oldversion): bool {
             $dbman->drop_field($table, $autonextactivity);
         }
 
-        upgrade_plugin_savepoint(true, 2026030710, 'local', 'smartnotices');
+        upgrade_plugin_savepoint(true, 2026030710, 'local', 'smartnoticespro');
     }
 
     if ($oldversion < 2026030711) {
@@ -149,7 +152,7 @@ function xmldb_local_smartnoticespro_upgrade(int $oldversion): bool {
             $dbman->add_index($table, $groupindex);
         }
 
-        upgrade_plugin_savepoint(true, 2026030711, 'local', 'smartnotices');
+        upgrade_plugin_savepoint(true, 2026030711, 'local', 'smartnoticespro');
     }
 
     return true;

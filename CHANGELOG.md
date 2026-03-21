@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.2.28-pro - 2026-03-20
+
+- Fixed Privacy API coverage for user-related log data:
+  - added metadata for `local_smartnoticespro_log`
+  - export/delete/userlist handling now includes interaction logs
+- Added missing capability strings required by Moodle validation:
+  - `smartnoticespro:manageglobalnotices`
+  - `smartnoticespro:managecoursenotices`
+  - `smartnoticespro:viewnotices`
+- Removed manual stylesheet inclusion from `lib.php`; Moodle now manages `styles.css` loading.
+- Removed risky `$GLOBALS` request guard and kept request-local render protection with `static`.
+- Added/normalized Moodle boilerplate headers in PHP, CSS, JS, and Mustache source files.
+- Fixed upgrade savepoint component names in `db/upgrade.php` to `smartnoticespro`.
+- Added GitHub Actions CI workflow using `moodle-plugin-ci`.
+- Cleaned README for Moodle/GitHub submission consistency.
+
 ## 0.2.27-pro - 2026-03-09
 
 - Updated PRO screenshots from workspace source folder:

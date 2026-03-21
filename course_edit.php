@@ -14,6 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * Course notice create/edit page.
+ *
+ * @package   local_smartnoticespro
+ * @copyright 2026 Jesus Antonio Jimenez Aviña <antoniomexdf@gmail.com> <antoniojamx@gmail.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 require_once(__DIR__ . '/../../config.php');
 require_once(__DIR__ . '/forms/notice_form.php');
 
@@ -115,4 +123,3 @@ echo $OUTPUT->header();
 echo $OUTPUT->heading($id ? get_string('editnotice', 'local_smartnoticespro') : get_string('addnotice', 'local_smartnoticespro'));
 $mform->display();
 echo $OUTPUT->footer();
-

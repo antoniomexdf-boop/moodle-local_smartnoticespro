@@ -19,6 +19,12 @@ Smart Notices Pro is a local plugin to publish targeted modal announcements acro
 - Complete manual (EN): `docs/MANUAL_EN.md`
 - Manual completo (ES): `docs/MANUAL_ES.md`
 
+## Continuous Integration
+
+- GitHub Actions workflow included at `.github/workflows/ci.yml`
+- Runs `moodle-plugin-ci` checks for Moodle `MOODLE_405_STABLE`
+- Covers `pgsql` and `mariadb` with PHP `8.1` and `8.2`
+
 ## Screenshots
 
 ![Main notices listing with actions and status badges](screenshots/smartnoticespro_01.png)
@@ -37,10 +43,6 @@ Recommended additional screenshots for GitHub and Moodle plugins page:
 3. Notice report page (interaction table).
 4. CSV export example opened in spreadsheet software.
 5. Listing sorted ascending and descending.
-
-Screenshot source integrated from:
-
-- `screenshots_smartnotices` (workspace source)
 
 ## Features
 

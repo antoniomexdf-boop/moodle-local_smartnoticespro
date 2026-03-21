@@ -44,6 +44,14 @@ class provider implements
             'timecreated' => 'privacy:metadata:local_smartnoticespro:timecreated',
             'timemodified' => 'privacy:metadata:local_smartnoticespro:timemodified',
         ], 'privacy:metadata:local_smartnoticespro');
+        $items->add_database_table('local_smartnoticespro_log', [
+            'noticeid' => 'privacy:metadata:local_smartnoticespro_log:noticeid',
+            'userid' => 'privacy:metadata:local_smartnoticespro_log:userid',
+            'action' => 'privacy:metadata:local_smartnoticespro_log:action',
+            'courseid' => 'privacy:metadata:local_smartnoticespro_log:courseid',
+            'pageurl' => 'privacy:metadata:local_smartnoticespro_log:pageurl',
+            'timecreated' => 'privacy:metadata:local_smartnoticespro_log:timecreated',
+        ], 'privacy:metadata:local_smartnoticespro_log');
 
         return $items;
     }
@@ -63,24 +71,44 @@ class provider implements
 
         $userid = $contextlist->get_user()->id;
         $records = $DB->get_records('local_smartnoticespro', ['userid' => $userid], 'timecreated DESC');
-        if (empty($records)) {
+        $logs = $DB->get_records('local_smartnoticespro_log', ['userid' => $userid], 'timecreated DESC');
+
+        $context = \context_system::instance();
+        if (!empty($records)) {
+            $export = [];
+            foreach ($records as $record) {
+                $export[] = (object)[
+                    'title' => $record->title,
+                    'message' => $record->message,
+                    'timecreated' => \core_privacy\local\request\transform::datetime($record->timecreated),
+                    'timemodified' => \core_privacy\local\request\transform::datetime($record->timemodified),
+                ];
+            }
+
+            \core_privacy\local\request\writer::with_context($context)->export_data(
+                [get_string('notices', 'local_smartnoticespro')],
+                (object)['items' => $export]
+            );
+        }
+
+        if (empty($logs)) {
             return;
         }
 
-        $context = \context_system::instance();
-        $export = [];
-        foreach ($records as $record) {
-            $export[] = (object)[
-                'title' => $record->title,
-                'message' => $record->message,
-                'timecreated' => \core_privacy\local\request\transform::datetime($record->timecreated),
-                'timemodified' => \core_privacy\local\request\transform::datetime($record->timemodified),
+        $logexport = [];
+        foreach ($logs as $log) {
+            $logexport[] = (object)[
+                'noticeid' => $log->noticeid,
+                'action' => $log->action,
+                'courseid' => $log->courseid,
+                'pageurl' => $log->pageurl,
+                'timecreated' => \core_privacy\local\request\transform::datetime($log->timecreated),
             ];
         }
 
         \core_privacy\local\request\writer::with_context($context)->export_data(
-            [get_string('notices', 'local_smartnoticespro')],
-            (object)['items' => $export]
+            [get_string('notices', 'local_smartnoticespro'), get_string('privacy:metadata:local_smartnoticespro_log', 'local_smartnoticespro')],
+            (object)['items' => $logexport]
         );
     }
 
@@ -96,6 +124,7 @@ class provider implements
             return;
         }
         $DB->delete_records('local_smartnoticespro');
+        $DB->delete_records('local_smartnoticespro_log');
     }
 
     /**
@@ -118,6 +147,7 @@ class provider implements
 
         list($insql, $params) = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
         $DB->delete_records_select('local_smartnoticespro', "userid {$insql}", $params);
+        $DB->delete_records_select('local_smartnoticespro_log', "userid {$insql}", $params);
     }
 
     /**
@@ -130,6 +160,7 @@ class provider implements
         global $DB;
         $userid = $contextlist->get_user()->id;
         $DB->delete_records('local_smartnoticespro', ['userid' => $userid]);
+        $DB->delete_records('local_smartnoticespro_log', ['userid' => $userid]);
     }
 
     /**
@@ -142,7 +173,8 @@ class provider implements
         global $DB;
 
         $contextlist = new \core_privacy\local\request\contextlist();
-        if ($DB->record_exists('local_smartnoticespro', ['userid' => $userid])) {
+        if ($DB->record_exists('local_smartnoticespro', ['userid' => $userid]) ||
+                $DB->record_exists('local_smartnoticespro_log', ['userid' => $userid])) {
             $contextlist->add_system_context();
         }
         return $contextlist;
@@ -162,8 +194,12 @@ class provider implements
             return;
         }
 
-        $sql = "SELECT DISTINCT userid
+        $sql = "SELECT userid
                   FROM {local_smartnoticespro}
+                 WHERE userid > 0
+                UNION
+                SELECT userid
+                  FROM {local_smartnoticespro_log}
                  WHERE userid > 0";
         $userlist->add_from_sql('userid', $sql, []);
     }

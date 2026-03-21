@@ -17,6 +17,13 @@ $string['privacy:metadata:local_smartnoticespro:message'] = 'Notice content.';
 $string['privacy:metadata:local_smartnoticespro:userid'] = 'User ID of the creator.';
 $string['privacy:metadata:local_smartnoticespro:timecreated'] = 'Creation timestamp.';
 $string['privacy:metadata:local_smartnoticespro:timemodified'] = 'Last update timestamp.';
+$string['privacy:metadata:local_smartnoticespro_log'] = 'Stores notice interaction logs.';
+$string['privacy:metadata:local_smartnoticespro_log:noticeid'] = 'The related notice ID.';
+$string['privacy:metadata:local_smartnoticespro_log:userid'] = 'User ID of the interacting user.';
+$string['privacy:metadata:local_smartnoticespro_log:action'] = 'Interaction action recorded for the notice.';
+$string['privacy:metadata:local_smartnoticespro_log:courseid'] = 'Course ID related to the interaction, when applicable.';
+$string['privacy:metadata:local_smartnoticespro_log:pageurl'] = 'Page path where the interaction happened.';
+$string['privacy:metadata:local_smartnoticespro_log:timecreated'] = 'Timestamp when the interaction was recorded.';
 
 $string['managenotices'] = 'Manage Smart Notices Pro';
 $string['notices'] = 'Notices';
@@ -100,9 +107,9 @@ $string['report:pageurl'] = 'Page';
 $string['report:date'] = 'Date and time';
 
 
-$string['capability:manageglobalnotices'] = 'Manage global smart notices';
-$string['capability:managecoursenotices'] = 'Manage course smart notices';
-$string['capability:viewnotices'] = 'View smart notices';
+$string['smartnoticespro:manageglobalnotices'] = 'Manage global smart notices';
+$string['smartnoticespro:managecoursenotices'] = 'Manage course smart notices';
+$string['smartnoticespro:viewnotices'] = 'View smart notices';
 
 $string['modal:close'] = 'Close notice';
 $string['modal:confirm'] = 'Got it';

@@ -28,26 +28,13 @@ use local_smartnoticespro\local\manager;
 use local_smartnoticespro\output\notice_modal;
 
 /**
- * Inject plugin stylesheet.
- *
- * @return string
- */
-function local_smartnoticespro_before_standard_html_head(): string {
-    global $CFG;
-    return '<link rel="stylesheet" href="' . $CFG->wwwroot . '/local/smartnoticespro/styles.css">';
-}
-
-/**
- * Shared renderer to avoid duplication across callbacks.
+ * Shared renderer to avoid duplication across callbacks in the same request.
  *
  * @return string
  */
 function local_smartnoticespro_render_notice_modal_html(): string {
     global $PAGE, $OUTPUT, $USER;
     static $alreadyrendered = false;
-    if (!empty($GLOBALS['smartnoticespro_any_modal_rendered'])) {
-        return '';
-    }
 
     if ($alreadyrendered) {
         return '';
@@ -95,7 +82,6 @@ function local_smartnoticespro_render_notice_modal_html(): string {
 
     $PAGE->requires->js_call_amd('local_smartnoticespro/modal', 'init', [$modalids]);
     $alreadyrendered = true;
-    $GLOBALS['smartnoticespro_any_modal_rendered'] = true;
 
     return $html;
 }
