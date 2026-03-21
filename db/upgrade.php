@@ -157,13 +157,69 @@ function xmldb_local_smartnoticespro_upgrade(int $oldversion): bool {
     if ($oldversion < 2026032002) {
         $table = new xmldb_table('local_smartnoticespro_log');
         $userid = new xmldb_field('userid', XMLDB_TYPE_INTEGER, '10', null, null, null, null, 'noticeid');
+        $useridkey = new xmldb_key('userid_fk', XMLDB_KEY_FOREIGN, ['userid'], 'user', ['id']);
+        $useridindex = new xmldb_index('userid_idx', XMLDB_INDEX_NOTUNIQUE, ['userid']);
 
         if ($dbman->field_exists($table, $userid)) {
+            if (method_exists($dbman, 'find_key_name')) {
+                if ($dbman->find_key_name($table, $useridkey)) {
+                    $dbman->drop_key($table, $useridkey);
+                }
+            }
+
+            if (method_exists($dbman, 'find_index_name')) {
+                if ($dbman->find_index_name($table, $useridindex)) {
+                    $dbman->drop_index($table, $useridindex);
+                }
+            }
+
             $dbman->change_field_notnull($table, $userid);
             $dbman->change_field_default($table, $userid);
+
+            if (method_exists($dbman, 'find_key_name')) {
+                if (!$dbman->find_key_name($table, $useridkey)) {
+                    $dbman->add_key($table, $useridkey);
+                }
+            } else {
+                $dbman->add_key($table, $useridkey);
+            }
         }
 
         upgrade_plugin_savepoint(true, 2026032002, 'local', 'smartnoticespro');
+    }
+
+    if ($oldversion < 2026032003) {
+        $table = new xmldb_table('local_smartnoticespro_log');
+        $userid = new xmldb_field('userid', XMLDB_TYPE_INTEGER, '10', null, null, null, null, 'noticeid');
+        $useridkey = new xmldb_key('userid_fk', XMLDB_KEY_FOREIGN, ['userid'], 'user', ['id']);
+        $useridindex = new xmldb_index('userid_idx', XMLDB_INDEX_NOTUNIQUE, ['userid']);
+
+        if ($dbman->field_exists($table, $userid)) {
+            if (method_exists($dbman, 'find_key_name')) {
+                if ($dbman->find_key_name($table, $useridkey)) {
+                    $dbman->drop_key($table, $useridkey);
+                }
+            }
+
+            if (method_exists($dbman, 'find_index_name')) {
+                if ($dbman->find_index_name($table, $useridindex)) {
+                    $dbman->drop_index($table, $useridindex);
+                }
+            }
+
+            $dbman->change_field_notnull($table, $userid);
+            $dbman->change_field_default($table, $userid);
+
+            if (method_exists($dbman, 'find_key_name')) {
+                if (!$dbman->find_key_name($table, $useridkey)) {
+                    $dbman->add_key($table, $useridkey);
+                }
+            } else {
+                $dbman->add_key($table, $useridkey);
+            }
+        }
+
+        upgrade_plugin_savepoint(true, 2026032003, 'local', 'smartnoticespro');
     }
 
     return true;

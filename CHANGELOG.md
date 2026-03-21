@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.31-pro - 2026-03-20
+
+- Fixed PostgreSQL upgrade path for `local_smartnoticespro_log.userid`.
+- Upgrade now drops dependent key/index structures before changing field nullability and recreates the foreign key afterwards.
+- Prevents `ddldependencyerror` during upgrade on existing sites.
+
 ## 0.2.30-pro - 2026-03-20
 
 - Fixed anonymous/login-page notice logging for non-authenticated users.
