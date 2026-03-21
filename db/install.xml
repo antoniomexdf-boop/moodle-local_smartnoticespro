@@ -45,7 +45,7 @@
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="noticeid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
-        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="false"/>
         <FIELD NAME="action" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT=""/>
         <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="false"/>
         <FIELD NAME="pageurl" TYPE="char" LENGTH="255" NOTNULL="false"/>

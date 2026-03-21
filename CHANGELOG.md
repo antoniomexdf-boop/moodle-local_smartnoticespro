@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.30-pro - 2026-03-20
+
+- Fixed anonymous/login-page notice logging for non-authenticated users.
+- Updated `local_smartnoticespro_log.userid` to allow `NULL` values:
+  - corrected `db/install.xml`
+  - added DB upgrade step for existing installations
+- Prevents `dmlwriteexception` when an impression is logged before user login.
+
 ## 0.2.29-pro - 2026-03-20
 
 - Fixed CI validation issues reported by `mustache`, `grunt`, `phpcs`, and `phpdoc`.

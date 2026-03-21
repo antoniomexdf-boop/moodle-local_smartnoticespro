@@ -154,5 +154,17 @@ function xmldb_local_smartnoticespro_upgrade(int $oldversion): bool {
         upgrade_plugin_savepoint(true, 2026030711, 'local', 'smartnoticespro');
     }
 
+    if ($oldversion < 2026032002) {
+        $table = new xmldb_table('local_smartnoticespro_log');
+        $userid = new xmldb_field('userid', XMLDB_TYPE_INTEGER, '10', null, null, null, null, 'noticeid');
+
+        if ($dbman->field_exists($table, $userid)) {
+            $dbman->change_field_notnull($table, $userid);
+            $dbman->change_field_default($table, $userid);
+        }
+
+        upgrade_plugin_savepoint(true, 2026032002, 'local', 'smartnoticespro');
+    }
+
     return true;
 }
