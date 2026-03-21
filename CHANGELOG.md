@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.32-pro - 2026-03-20
+
+- Reduced publication package to English-only resources for Moodle submission.
+- Removed Spanish language pack from `lang/es`.
+- Removed Spanish manual from `docs/MANUAL_ES.md`.
+- Updated README references and feature list to English-only documentation/language packaging.
+
 ## 0.2.31-pro - 2026-03-20
 
 - Fixed PostgreSQL upgrade path for `local_smartnoticespro_log.userid`.

@@ -17,7 +17,6 @@ Smart Notices Pro is a local plugin to publish targeted modal announcements acro
 ## Documentation
 
 - Complete manual (EN): `docs/MANUAL_EN.md`
-- Manual completo (ES): `docs/MANUAL_ES.md`
 
 ## Continuous Integration
 
@@ -70,7 +69,7 @@ Recommended additional screenshots for GitHub and Moodle plugins page:
 - Built-in metrics per notice: impressions, closes, confirmations, and CTR.
 - Per-notice interaction report with CSV export (Excel-compatible).
 - Accessible modal rendering with Mustache + AMD.
-- English and Spanish language packs.
+- English language pack.
 
 ## Requirements
 
