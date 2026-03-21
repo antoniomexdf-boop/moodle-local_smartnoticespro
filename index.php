@@ -1,6 +1,6 @@
 <?php
 // This file is part of Moodle - http://moodle.org/
-
+//
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -107,13 +107,13 @@ echo $OUTPUT->render($pagingbar);
 
 $table = new html_table();
 $table->attributes['class'] = 'generaltable table table-striped table-hover smartnotices-table';
-$sorticon = function(string $field) use ($sort, $dir): string {
+$sorticon = function (string $field) use ($sort, $dir): string {
     if ($sort !== $field) {
         return '';
     }
     return $dir === 'ASC' ? ' ▲' : ' ▼';
 };
-$sortlink = function(string $field, string $label) use ($url, $sort, $dir, $sorticon): string {
+$sortlink = function (string $field, string $label) use ($url, $sort, $dir, $sorticon): string {
     $newdir = ($sort === $field && $dir === 'ASC') ? 'DESC' : 'ASC';
     $params = $url->params();
     $params['sort'] = $field;

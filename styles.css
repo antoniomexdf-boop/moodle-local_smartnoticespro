@@ -39,11 +39,12 @@
 
 .smartnotices-modal__card {
     position: relative;
-    width: min(92vw, 640px);
+    width: 92vw;
+    max-width: 640px;
     max-height: 80vh;
     overflow: auto;
     border-radius: 14px;
-    background: #ffffff;
+    background: #fff;
     box-shadow: 0 24px 48px rgba(15, 23, 42, 0.25);
     padding: 1.5rem 1.5rem 1.25rem;
 }
@@ -105,24 +106,24 @@ body.smartnotices-modal-open {
     border-radius: 999px;
 }
 
-.smartnotices-badge--scope {
-    background: #e0ecff !important;
-    color: #1e3a8a !important;
+.smartnotices-badge.smartnotices-badge--scope {
+    background: #e0ecff;
+    color: #1e3a8a;
 }
 
-.smartnotices-badge--role {
-    background: #e8fff3 !important;
-    color: #166534 !important;
+.smartnotices-badge.smartnotices-badge--role {
+    background: #e8fff3;
+    color: #166534;
 }
 
-.smartnotices-badge--active {
-    background: #dcfce7 !important;
-    color: #166534 !important;
+.smartnotices-badge.smartnotices-badge--active {
+    background: #dcfce7;
+    color: #166534;
 }
 
-.smartnotices-badge--inactive {
-    background: #fee2e2 !important;
-    color: #991b1b !important;
+.smartnotices-badge.smartnotices-badge--inactive {
+    background: #fee2e2;
+    color: #991b1b;
 }
 
 .smartnotices-modal__footer {

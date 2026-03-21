@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.2.29-pro - 2026-03-20
+
+- Fixed CI validation issues reported by `mustache`, `grunt`, `phpcs`, and `phpdoc`.
+- Added example context to `templates/modal.mustache` for Mustache lint/HTML validation.
+- Added missing JSDoc to AMD source and aligned modal source files with Moodle linting expectations.
+- Updated CSS to satisfy Stylelint:
+  - removed `!important`
+  - replaced unsupported `min()` width usage
+  - normalized hex color length
+- Corrected Moodle boilerplate formatting in PHP language and page files.
+- Fixed PHPCS issues in PHP files:
+  - removed unnecessary `MOODLE_INTERNAL` checks where applicable
+  - replaced `elseif` with `else if`
+  - fixed anonymous function spacing
+  - adjusted the public tracking endpoint to intentionally bypass the login sniff
+- Completed PHPDoc cleanup:
+  - added missing parameter docs
+  - corrected parameter types
+  - fixed interface ordering and multiline formatting in the privacy provider
+
 ## 0.2.28-pro - 2026-03-20
 
 - Fixed Privacy API coverage for user-related log data:

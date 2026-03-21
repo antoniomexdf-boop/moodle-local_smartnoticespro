@@ -22,8 +22,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 use local_smartnoticespro\local\manager;
 use local_smartnoticespro\output\notice_modal;
 
@@ -112,7 +110,11 @@ function local_smartnoticespro_before_standard_footer_html(): string {
  * @param context_course $context
  * @return void
  */
-function local_smartnoticespro_extend_navigation_course(navigation_node $navigation, stdClass $course, context_course $context): void {
+function local_smartnoticespro_extend_navigation_course(
+    navigation_node $navigation,
+    stdClass $course,
+    context_course $context
+): void {
     if (!isloggedin() || isguestuser()) {
         return;
     }

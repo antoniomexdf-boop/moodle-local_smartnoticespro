@@ -1,6 +1,6 @@
 <?php
 // This file is part of Moodle - http://moodle.org/
-
+//
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -56,7 +56,7 @@ if ($notice) {
         $context = $accesscontext;
         $canmanageglobal = true;
     }
-} elseif ($courseidparam > 0) {
+} else if ($courseidparam > 0) {
     $courseid = $courseidparam;
     $course = get_course($courseid);
     require_login($course);
@@ -150,7 +150,7 @@ if ($data = $mform->get_data()) {
             manager::LOCATION_COURSE => 1,
         ];
         $payload->targetroles = manager::ROLE_ALL;
-    } elseif ($payload->scope === manager::SCOPE_COURSE) {
+    } else if ($payload->scope === manager::SCOPE_COURSE) {
         // Global flow: course-specific notices are always course-page and all-users.
         $payload->targetroles = manager::ROLE_ALL;
         $rawlocations = [
@@ -160,7 +160,7 @@ if ($data = $mform->get_data()) {
             manager::LOCATION_MYCOURSES => 0,
             manager::LOCATION_COURSE => 1,
         ];
-    } elseif ($payload->scope === manager::SCOPE_GLOBAL) {
+    } else if ($payload->scope === manager::SCOPE_GLOBAL) {
         $payload->courseid = null;
         $payload->groupid = null;
     }

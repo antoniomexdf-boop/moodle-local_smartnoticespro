@@ -22,7 +22,10 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// This endpoint must be callable from public pages such as the login notice.
+// phpcs:disable moodle.Files.RequireLogin.Missing
 require_once(__DIR__ . '/../../config.php');
+// phpcs:enable moodle.Files.RequireLogin.Missing
 
 use local_smartnoticespro\local\manager;
 

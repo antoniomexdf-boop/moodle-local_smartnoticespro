@@ -60,7 +60,13 @@ class notice_form extends moodleform {
             'noclean' => false,
             'context' => $courseid > 0 ? context_course::instance($courseid) : \context_system::instance(),
         ];
-        $mform->addElement('editor', 'message_editor', get_string('message', 'local_smartnoticespro'), ['rows' => 8], $editoroptions);
+        $mform->addElement(
+            'editor',
+            'message_editor',
+            get_string('message', 'local_smartnoticespro'),
+            ['rows' => 8],
+            $editoroptions
+        );
         $mform->setType('message_editor', PARAM_RAW);
         $mform->addRule('message_editor', null, 'required', null, 'client');
 
@@ -109,7 +115,9 @@ class notice_form extends moodleform {
         }
 
         if ($canmanageglobal) {
-            $targetroleoptions = ['' => get_string('targetrole_select', 'local_smartnoticespro')] + manager::get_target_role_options();
+            $targetroleoptions = [
+                '' => get_string('targetrole_select', 'local_smartnoticespro'),
+            ] + manager::get_target_role_options();
             $mform->addElement('select', 'targetroles', get_string('targetroles', 'local_smartnoticespro'), $targetroleoptions);
             $mform->setType('targetroles', PARAM_ALPHANUMEXT);
             $mform->setDefault('targetroles', '');
@@ -143,7 +151,12 @@ class notice_form extends moodleform {
             $mform->setType('location_mycourses', PARAM_INT);
         }
 
-        $mform->addElement('date_time_selector', 'timestart', get_string('startdate', 'local_smartnoticespro'), ['optional' => true]);
+        $mform->addElement(
+            'date_time_selector',
+            'timestart',
+            get_string('startdate', 'local_smartnoticespro'),
+            ['optional' => true]
+        );
         $mform->addElement('date_time_selector', 'timeend', get_string('enddate', 'local_smartnoticespro'), ['optional' => true]);
 
         $this->add_action_buttons(true, get_string('savechanges', 'local_smartnoticespro'));

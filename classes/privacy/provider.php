@@ -16,8 +16,6 @@
 
 namespace local_smartnoticespro\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Privacy provider for local_smartnoticespro.
  *
@@ -27,9 +25,8 @@ defined('MOODLE_INTERNAL') || die();
  */
 class provider implements
     \core_privacy\local\metadata\provider,
-    \core_privacy\local\request\plugin\provider,
-    \core_privacy\local\request\core_userlist_provider {
-
+    \core_privacy\local\request\core_userlist_provider,
+    \core_privacy\local\request\plugin\provider {
     /**
      * Returns metadata about this plugin's data.
      *
@@ -107,7 +104,10 @@ class provider implements
         }
 
         \core_privacy\local\request\writer::with_context($context)->export_data(
-            [get_string('notices', 'local_smartnoticespro'), get_string('privacy:metadata:local_smartnoticespro_log', 'local_smartnoticespro')],
+            [
+                get_string('notices', 'local_smartnoticespro'),
+                get_string('privacy:metadata:local_smartnoticespro_log', 'local_smartnoticespro'),
+            ],
             (object)['items' => $logexport]
         );
     }
@@ -115,7 +115,7 @@ class provider implements
     /**
      * Delete user data for all contexts.
      *
-     * @param \core_privacy\local\request\approved_contextlist $contextlist
+     * @param \context $context
      * @return void
      */
     public static function delete_data_for_all_users_in_context(\context $context): void {
@@ -145,7 +145,7 @@ class provider implements
             return;
         }
 
-        list($insql, $params) = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
+        [$insql, $params] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
         $DB->delete_records_select('local_smartnoticespro', "userid {$insql}", $params);
         $DB->delete_records_select('local_smartnoticespro_log', "userid {$insql}", $params);
     }
@@ -173,8 +173,10 @@ class provider implements
         global $DB;
 
         $contextlist = new \core_privacy\local\request\contextlist();
-        if ($DB->record_exists('local_smartnoticespro', ['userid' => $userid]) ||
-                $DB->record_exists('local_smartnoticespro_log', ['userid' => $userid])) {
+        if (
+            $DB->record_exists('local_smartnoticespro', ['userid' => $userid]) ||
+            $DB->record_exists('local_smartnoticespro_log', ['userid' => $userid])
+        ) {
             $contextlist->add_system_context();
         }
         return $contextlist;

@@ -24,6 +24,11 @@
 define([], function() {
     'use strict';
 
+    /**
+     * Initialise modal queue rendering.
+     *
+     * @param {string|string[]} modalids Modal element ids.
+     */
     function init(modalids) {
         var ids = Array.isArray(modalids) ? modalids : [modalids];
         var modals = ids.map(function(id) {

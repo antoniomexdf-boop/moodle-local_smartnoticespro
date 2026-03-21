@@ -39,6 +39,21 @@
     * message
     * showconfirm
     * confirmlabel
+
+    Example context (json):
+    {
+        "modalid": "smartnoticespro-modal-1",
+        "noticeid": "15",
+        "courseid": "12",
+        "sesskey": "example-sesskey",
+        "dialoglabel": "Site notice",
+        "closelabel": "Close notice",
+        "showtitle": true,
+        "title": "Welcome back",
+        "message": "<p>This is a sample Smart Notices Pro modal.</p>",
+        "showconfirm": true,
+        "confirmlabel": "Got it"
+    }
 }}
 <div id="{{modalid}}" class="smartnotices-modal" role="dialog" aria-modal="true" aria-label="{{dialoglabel}}" aria-hidden="true" tabindex="-1" data-noticeid="{{noticeid}}" data-courseid="{{courseid}}" data-sesskey="{{sesskey}}">
     <div class="smartnotices-modal__backdrop" data-action="close"></div>

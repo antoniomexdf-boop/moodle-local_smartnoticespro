@@ -16,8 +16,6 @@
 
 namespace local_smartnoticespro\local;
 
-defined('MOODLE_INTERNAL') || die();
-
 use context_course;
 use context_system;
 use moodle_page;
@@ -357,6 +355,8 @@ class manager {
      *
      * @param int $limitfrom
      * @param int $limitnum
+     * @param string $sort
+     * @param string $dir
      * @return stdClass[]
      */
     public static function get_all_notices_paginated(
@@ -396,6 +396,8 @@ class manager {
      * @param int $courseid
      * @param int $limitfrom
      * @param int $limitnum
+     * @param string $sort
+     * @param string $dir
      * @return stdClass[]
      */
     public static function get_course_notices_paginated(
