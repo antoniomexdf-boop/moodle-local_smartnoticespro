@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.33-pro - 2026-03-20
+
+- Rebuilt AMD assets from a Moodle installation to refresh committed build artifacts.
+- Added the generated `amd/build/modal.min.js.map` file required by Moodle CI.
+- Updated `amd/build/modal.min.js` to match the current `amd/src/modal.js` source state.
+
 ## 0.2.32-pro - 2026-03-20
 
 - Reduced publication package to English-only resources for Moodle submission.
