@@ -25,11 +25,13 @@
     Data attributes required for JS:
     * data-noticeid
     * data-courseid
+    * data-cantrackajax
 
     Context variables required for this template:
     * modalid
     * noticeid
     * courseid
+    * cantrackajax
     * dialoglabel
     * closelabel
     * showtitle
@@ -43,6 +45,7 @@
         "modalid": "smartnoticespro-modal-1",
         "noticeid": "15",
         "courseid": "12",
+        "cantrackajax": true,
         "dialoglabel": "Site notice",
         "closelabel": "Close notice",
         "showtitle": true,
@@ -52,7 +55,7 @@
         "confirmlabel": "Got it"
     }
 }}
-<div id="{{modalid}}" class="smartnotices-modal" role="dialog" aria-modal="true" aria-label="{{dialoglabel}}" aria-hidden="true" tabindex="-1" data-noticeid="{{noticeid}}" data-courseid="{{courseid}}">
+<div id="{{modalid}}" class="smartnotices-modal" role="dialog" aria-modal="true" aria-label="{{dialoglabel}}" aria-hidden="true" tabindex="-1" data-noticeid="{{noticeid}}" data-courseid="{{courseid}}" data-cantrackajax="{{#cantrackajax}}1{{/cantrackajax}}{{^cantrackajax}}0{{/cantrackajax}}">
     <div class="smartnotices-modal__backdrop" data-action="close"></div>
     <div class="smartnotices-modal__card" role="document">
         <button type="button" class="smartnotices-modal__close" data-action="close" aria-label="{{closelabel}}">&times;</button>

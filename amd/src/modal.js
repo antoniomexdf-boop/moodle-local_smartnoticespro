@@ -51,9 +51,10 @@ define(['core/ajax'], function(Ajax) {
 
             var noticeid = modal.getAttribute('data-noticeid');
             var courseid = modal.getAttribute('data-courseid') || '0';
+            var cantrackajax = modal.getAttribute('data-cantrackajax') === '1';
             var pageurl = window.location.pathname || '';
 
-            if (!noticeid) {
+            if (!noticeid || !cantrackajax) {
                 return;
             }
 

@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.36 - 2026-03-23
+
+- Removed the legacy `track.php` endpoint.
+- Smart Notices Pro modal interaction tracking now uses only Moodle External Services.
+- Kept anonymous login/front-page close behavior client-side to avoid modal reopen loops.
+
+## 0.2.35-pro - 2026-03-23
+
+- Fixed modal close behavior for anonymous users on login and front page.
+- Prevented the modal from repeatedly reopening when the user is not authenticated.
+- External Services tracking now runs only for authenticated, non-guest users.
+- Anonymous users still see the modal and can close it normally without AJAX tracking.
+
 ## 0.2.34-pro - 2026-03-23
 
 - Replaced manual modal tracking AJAX calls with Moodle External Services.

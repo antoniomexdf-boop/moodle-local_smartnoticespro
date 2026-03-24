@@ -25,8 +25,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_smartnoticespro';
-$plugin->version = 2026032300;
+$plugin->version = 2026032302;
 $plugin->requires = 2024100700; // Moodle 4.5.
 $plugin->supported = [405, 405];
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '0.2.34-pro';
+$plugin->release = '0.2.36';
