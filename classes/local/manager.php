@@ -829,6 +829,54 @@ class manager {
     }
 
     /**
+     * Process one tracked notice interaction.
+     *
+     * @param int $noticeid
+     * @param string $eventname
+     * @param int|null $userid
+     * @param int|null $courseid
+     * @param string|null $pageurl
+     * @return string
+     */
+    public static function process_notice_event(
+        int $noticeid,
+        string $eventname,
+        ?int $userid = null,
+        ?int $courseid = null,
+        ?string $pageurl = null
+    ): string {
+        $allowed = ['close', 'confirm'];
+        if (!in_array($eventname, $allowed, true)) {
+            throw new \moodle_exception('invalidparameter');
+        }
+
+        $notice = self::get_notice($noticeid);
+        if (!$notice) {
+            throw new \moodle_exception('error:noticemissing', 'local_smartnoticespro');
+        }
+
+        if (isloggedin() && !isguestuser()) {
+            require_capability('local/smartnoticespro:viewnotices', context_system::instance());
+        }
+
+        if ($eventname === 'confirm' && isset($notice->confirmenabled) && empty($notice->confirmenabled)) {
+            return 'ignored';
+        }
+
+        if ($eventname === 'close') {
+            self::increment_metric($noticeid, 'closes');
+            self::log_notice_event($noticeid, 'close', $userid, $courseid, $pageurl);
+        }
+
+        if ($eventname === 'confirm') {
+            self::increment_metric($noticeid, 'confirmations');
+            self::log_notice_event($noticeid, 'confirm', $userid, $courseid, $pageurl);
+        }
+
+        return 'ok';
+    }
+
+    /**
      * Count logs by notice.
      *
      * @param int $noticeid

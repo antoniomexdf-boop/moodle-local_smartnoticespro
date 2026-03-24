@@ -21,7 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define([], function() {
+define(['core/ajax'], function(Ajax) {
     'use strict';
 
     /**
@@ -50,30 +50,23 @@ define([], function() {
             }
 
             var noticeid = modal.getAttribute('data-noticeid');
-            var sesskey = modal.getAttribute('data-sesskey');
             var courseid = modal.getAttribute('data-courseid') || '0';
             var pageurl = window.location.pathname || '';
 
-            if (!noticeid || !sesskey) {
+            if (!noticeid) {
                 return;
             }
 
             state[eventname] = true;
-            var body = new URLSearchParams();
-            body.append('noticeid', noticeid);
-            body.append('event', eventname);
-            body.append('sesskey', sesskey);
-            body.append('courseid', courseid);
-            body.append('pageurl', pageurl);
-
-            fetch(M.cfg.wwwroot + '/local/smartnoticespro/track.php', {
-                method: 'POST',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                },
-                body: body.toString()
-            }).catch(function() {
+            Ajax.call([{
+                methodname: 'local_smartnoticespro_track_notice_event',
+                args: {
+                    noticeid: parseInt(noticeid, 10),
+                    eventname: eventname,
+                    courseid: parseInt(courseid, 10),
+                    pageurl: pageurl
+                }
+            }])[0].catch(function() {
                 // Silent fail for tracking.
             });
         };

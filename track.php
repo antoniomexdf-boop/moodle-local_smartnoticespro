@@ -59,16 +59,7 @@ if ($event === 'confirm' && isset($notice->confirmenabled) && empty($notice->con
 $userid = (isloggedin() && !isguestuser()) ? (int)$USER->id : null;
 $courseid = optional_param('courseid', 0, PARAM_INT);
 $pageurl = optional_param('pageurl', '', PARAM_LOCALURL);
-
-if ($event === 'close') {
-    manager::increment_metric($noticeid, 'closes');
-    manager::log_notice_event($noticeid, 'close', $userid, $courseid ?: null, $pageurl ?: null);
-}
-
-if ($event === 'confirm') {
-    manager::increment_metric($noticeid, 'confirmations');
-    manager::log_notice_event($noticeid, 'confirm', $userid, $courseid ?: null, $pageurl ?: null);
-}
+$status = manager::process_notice_event($noticeid, $event, $userid, $courseid ?: null, $pageurl ?: null);
 
 header('Content-Type: application/json');
-echo json_encode(['status' => 'ok']);
+echo json_encode(['status' => $status]);

@@ -52,7 +52,6 @@ class notice_modal implements renderable, templatable {
             'modalid' => 'smartnotices-modal-' . $this->notice->id,
             'noticeid' => (int)$this->notice->id,
             'courseid' => !empty($this->notice->courseid) ? (int)$this->notice->courseid : 0,
-            'sesskey' => sesskey(),
             'title' => format_string($this->notice->title),
             'showtitle' => empty($this->notice->hidetitle),
             'showconfirm' => !isset($this->notice->confirmenabled) || !empty($this->notice->confirmenabled),

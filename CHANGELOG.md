@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.34-pro - 2026-03-23
+
+- Replaced manual modal tracking AJAX calls with Moodle External Services.
+- Added `db/services.php` and an AJAX-enabled external function for notice interaction tracking.
+- Updated AMD modal code to use `core/ajax` instead of direct `fetch()` calls to `track.php`.
+- Centralized tracking validation and event processing in the notice manager.
+- Removed the manual `sesskey` dependency from the modal template context.
+
 ## 0.2.33-pro - 2026-03-20
 
 - Rebuilt AMD assets from a Moodle installation to refresh committed build artifacts.
